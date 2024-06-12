@@ -12,7 +12,16 @@ sap.ui.define(
          * @memberOf com.sap.productsui.ext.controller.ListReportExt
          */
         onInit: function () {
-          console.log("Extension controller is being called...");
+          console.log("ON INIT: Extension controller is being called...");
+
+          sap.ui
+            .getCore()
+            .byId(
+              "project1::sap.suite.ui.generic.template.ListReport.view.ListReport::Employees--listReport"
+            )
+            .attachBeforeExport(function (oEvent) {
+              oEvent.mParameters.exportSettings.dataSource.sizeLimit = 5000;
+            });
         },
       },
     });
