@@ -1,0 +1,9 @@
+### GET status of async call
+GET http://localhost:4004/v2/service/employees/Employees?$inlinecount=allpages
+
+
+### GET status of async call
+GET http://localhost:4004/v2/service/employees
+
+### GET status of async call
+GET http://localhost:4004/v2/service/employees/$metadata
