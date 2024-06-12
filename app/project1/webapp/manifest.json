@@ -13,23 +13,15 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
       "version": "1.12.5",
-      "toolsId": "7cdfd07c-eca6-465a-947d-3926d0138a37"
+      "toolsId": "8236eb11-79f1-49a5-86c6-1ce3710aa461"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/v2/service/employees/",
+        "uri": "/odata/v4/service/employees/",
         "type": "OData",
         "settings": {
-          "annotations": ["annotation"],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
-        }
-      },
-      "annotation": {
-        "type": "ODataAnnotation",
-        "uri": "annotations/annotation.xml",
-        "settings": {
-          "localUri": "annotations/annotation.xml"
+          "annotations": [],
+          "odataVersion": "4.0"
         }
       }
     }
@@ -51,15 +43,6 @@
     }
   },
   "sap.ui5": {
-    "extends": {
-      "extensions": {
-        "sap.ui.controllerExtensions": {
-          "sap.suite.ui.generic.template.ListReport.view.ListReport": {
-            "controllerName": "project1.ext.controller.ListReportExt"
-          }
-        }
-      }
-    },
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.124.1",
@@ -67,10 +50,7 @@
         "sap.m": {},
         "sap.ui.core": {},
         "sap.ushell": {},
-        "sap.f": {},
-        "sap.ui.comp": {},
-        "sap.ui.generic.app": {},
-        "sap.suite.ui.generic.template": {}
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -88,12 +68,10 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {
-          "defaultBindingMode": "TwoWay",
-          "defaultCountMode": "Inline",
-          "refreshAfterChange": false,
-          "metadataUrlParams": {
-            "sap-value-list": "none"
-          }
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
         }
       },
       "@i18n": {
@@ -106,41 +84,52 @@
     },
     "routing": {
       "config": {},
-      "routes": [],
-      "targets": {}
-    }
-  },
-  "sap.ui.generic.app": {
-    "_version": "1.3.0",
-    "settings": {
-      "forceGlobalRefresh": false,
-      "objectPageHeaderType": "Dynamic",
-      "considerAnalyticalParameters": true,
-      "showDraftToggle": false
-    },
-    "pages": {
-      "ListReport|Employees": {
-        "entitySet": "Employees",
-        "component": {
-          "name": "sap.suite.ui.generic.template.ListReport",
-          "list": true,
-          "settings": {
-            "condensedTableLayout": true,
-            "smartVariantManagement": true,
-            "enableTableFilterInPageVariant": true,
-            "filterSettings": {
-              "dateSettings": {
-                "useDateRange": true
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "EmployeesList",
+          "target": "EmployeesList"
+        },
+        {
+          "pattern": "Employees({key}):?query:",
+          "name": "EmployeesObjectPage",
+          "target": "EmployeesObjectPage"
+        }
+      ],
+      "targets": {
+        "EmployeesList": {
+          "type": "Component",
+          "id": "EmployeesList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Employees",
+              "variantManagement": "Page",
+              "navigation": {
+                "Employees": {
+                  "detail": {
+                    "route": "EmployeesObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "showRowCount": true
+                  }
+                }
               }
             }
           }
         },
-        "pages": {
-          "ObjectPage|Employees": {
-            "entitySet": "Employees",
-            "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
-            "component": {
-              "name": "sap.suite.ui.generic.template.ObjectPage"
+        "EmployeesObjectPage": {
+          "type": "Component",
+          "id": "EmployeesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/Employees"
             }
           }
         }

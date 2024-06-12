@@ -26,6 +26,7 @@
     }
   },
   "sapux": [
+    "app/project1",
     "app/project1"
   ]
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html>
 <!-- Copyright (c) 2015 SAP AG, All Rights Reserved -->
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,8 +37,7 @@
                 fiori2: {
                     componentData: {
                         config: {
-                            search: "hidden",
-                            enableSearch: false
+                            search: "hidden"
                         }
                     }
                 }
@@ -55,22 +54,23 @@
         };
     </script>
 
-    <script src="../test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
-    <!-- Bootstrap the UI5 core library. 'data-sap-ui-frameOptions="allow"'' is a NON-SECURE setting for test environments -->
+    <script src="https://sapui5.hana.ondemand.com/1.124.1/test-resources/sap/ushell/bootstrap/sandbox.js" id="sap-ushell-bootstrap"></script>
+    <!-- Bootstrap the UI5 core library -->
     <script id="sap-ui-bootstrap"
-        src="../resources/sap-ui-core.js"
-        data-sap-ui-libs="sap.m,sap.ui.core,sap.ushell,sap.f,sap.ui.comp,sap.ui.generic.app,sap.suite.ui.generic.template"
+        src="https://sapui5.hana.ondemand.com/1.124.1/resources/sap-ui-core.js"
+        data-sap-ui-libs=""
         data-sap-ui-async="true"
         data-sap-ui-preload="async"
         data-sap-ui-theme="sap_horizon"
         data-sap-ui-compatVersion="edge"
         data-sap-ui-language="en"
         data-sap-ui-resourceroots='{"project1": "../"}'
-        data-sap-ui-frameOptions="allow"
-        data-sap-ui-flexibilityServices='[{"applyConnector":"project1/test/changes_loader", "custom":true}, {"connector": "LocalStorageConnector"}]'>
+        data-sap-ui-frameOptions="allow"> // NON-SECURE setting for testing environment
     </script>
-    <script id="locate-reuse-libs" src="./locate-reuse-libs.js" data-sap-ui-manifest-uri="../manifest.json">
-    </script>
+
+    <script type="text/javascript">
+        sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt('content'));
+    </script>     
 </head>
 
 <!-- UI Content -->

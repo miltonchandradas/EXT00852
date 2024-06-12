@@ -6,7 +6,7 @@ module.exports = async (srv) => {
 
   srv.on("READ", Employees, async (req) => {
     let employees = [];
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1500; i++) {
       employees.push({
         ID: uuidv4(),
         name: `Milton - ${i}`,
@@ -14,7 +14,7 @@ module.exports = async (srv) => {
       });
     }
 
-    employees.$count = 500;
+    employees.$count = 1500;
     return employees;
   });
 };

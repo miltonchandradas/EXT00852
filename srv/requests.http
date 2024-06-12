@@ -7,3 +7,7 @@ GET http://localhost:4004/v2/service/employees
 
 ### GET status of async call
 GET http://localhost:4004/v2/service/employees/$metadata
+
+
+### GET status of async call
+GET http://localhost:4004/odata/v4/service/employees/Employees?$count=true
