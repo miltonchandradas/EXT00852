@@ -134,6 +134,15 @@
           }
         }
       }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "project1.ext.controller.ListReportExt"
+          }
+        }
+      }
     }
   },
   "sap.fiori": {
