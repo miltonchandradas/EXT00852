@@ -1,0 +1,8 @@
+View:
+project1::sap.suite.ui.generic.template.ListReport.view.ListReport::Employees
+
+Table:
+project1::sap.suite.ui.generic.template.ListReport.view.ListReport::Employees--responsiveTable-listUl
+
+Excel download button:
+project1::sap.suite.ui.generic.template.ListReport.view.ListReport::Employees--listReport-btnExcelExport
